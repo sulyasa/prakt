@@ -18,29 +18,36 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // 1. Users
-        $admin = User::create([
-            'name' => 'Администратор',
-            'email' => 'admin@sportshop.ru',
-            'password' => Hash::make('admin123'),
-            'role' => 'admin',
-            'phone' => '+7 (999) 777-77-77',
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@sportshop.ru'],
+            [
+                'name' => 'Администратор',
+                'password' => Hash::make('admin123'),
+                'role' => 'admin',
+                'phone' => '+7 (999) 777-77-77',
+            ]
+        );
 
-        $customer = User::create([
-            'name' => 'Иван Иванов',
-            'email' => 'user@sportshop.ru',
-            'password' => Hash::make('user123'),
-            'role' => 'user',
-            'phone' => '+7 (999) 111-22-33',
-        ]);
+        $customer = User::firstOrCreate(
+            ['email' => 'user@sportshop.ru'],
+            [
+                'name' => 'Иван Иванов',
+                'password' => Hash::make('user123'),
+                'role' => 'user',
+                'phone' => '+7 (999) 111-22-33',
+            ]
+        );
 
-        $customer2 = User::create([
-            'name' => 'Мария Петрова',
-            'email' => 'maria@sportshop.ru',
-            'password' => Hash::make('user123'),
-            'role' => 'user',
-            'phone' => '+7 (999) 444-55-66',
-        ]);
+        $customer2 = User::firstOrCreate(
+            ['email' => 'maria@sportshop.ru'],
+            [
+                'name' => 'Мария Петрова',
+                'password' => Hash::make('user123'),
+                'role' => 'user',
+                'phone' => '+7 (999) 444-55-66',
+            ]
+        );
+
 
         // 2. Categories
         $catClothing = Category::create([
